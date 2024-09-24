@@ -3,14 +3,13 @@ import os
 # Limpa o terminal.
 os.system("cls || clear")
 
-print("""
-Informe o número da turma: 
-Turma - G93313
 
-Nome completo dos componentes.
-1 - Gabriel Pinto dos Santos
-2 - Henrique Santos Silva
-""")
+##Turma - G93313
+
+#Nome completo dos componentes.
+#1 - Gabriel Pinto dos Santos
+#2 - Henrique Santos Silva
+
 
 print("""
 escreva o código do prato para fazer o pedido:
@@ -27,19 +26,19 @@ codigo |Menu              |Valor |
 def exibir_menu(codigo_prato):
     match(codigo_prato):
         case 1:
-            return "Picanha", 100.00
+            return "Picanha 1", 100.00
         case 2:
-            return "Strognoff", 35.00
+            return "Strognoff 2", 35.00
         case 3:
-            return "Lasanha", 25.00
+            return "Lasanha 3", 25.00
         case 4:
-            return "Frango a Milanesa", 70.00
+            return "Frango a Milanesa 4", 70.00
         case 5:
-            return "Peixe Grelhado", 60.00
+            return "Peixe Grelhado 5", 60.00
         case 6:
-            return "Burrito com Fritas", 85.00
+            return "Burrito com Fritas 6", 85.00
         case 7:
-            return "Hamburguer", 25.00
+            return "Hamburguer 7", 25.00
         case _:
             return None, 0
 
@@ -83,5 +82,5 @@ tipo_pagamento, ajuste, total_final = calcular_valor_final(total_do_pedido)
 print("\n=== Pedidos realizados ===")
 for item, preco in pedido_cliente:
     print(f"- {item}: R$ {preco:.2f}")
-print(f"Total a pagar: R$ {total_final:.2f} ({tipo_pagamento})")
+print(f"Total a pagar : R$ {total_final:.2f} (Valor sem adição de desconto ou acrecimo: {total_do_pedido}) ({tipo_pagamento})")
 print("=== FIM ===")
