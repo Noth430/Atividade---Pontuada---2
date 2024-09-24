@@ -49,7 +49,7 @@ total_do_pedido = 0
 
 
 while True:
-    codigo_prato = int(input("Digite o codigo do produto"))
+    codigo_prato = int(input("Digite o codigo do produto: "))
     prato, preco = exibir_menu(codigo_prato)
     if prato is None:
         print("Codigo invalido,Digite o codigo novamente: ")
@@ -58,12 +58,36 @@ while True:
         Pedido_client.append(prato)
         total_do_pedido += preco
     
-        adicionar = input("Deseja Adificonar mais algum pedido? (sim ou não ?):")
+        adicionar = input("Deseja Adiciconar mais algum pedido? (sim ou não ?):")
         if adicionar != 'sim':
             break
+
+    def calcular_valor_final(total):
+
+        forma_pagamento = input("Escolha a forma de pagamento (1 - À vista / 2 - Cartão de crédito): ")
+        if forma_pagamento == '1':
+            desconto = total * 0.10
+            total_final = total - desconto
+            tipo_pagamento = "À vista"
+        elif forma_pagamento == '2':
+            acréscimo = total * 0.10
+            total_final = total + acréscimo
+            tipo_pagamento = "Cartão de crédito"
+        else:
+            print("Forma de pagamento inválida. Considerando 'À vista' por padrão.")
+        desconto = total * 0.10
+        total_final = total - desconto
+        tipo_pagamento = "À vista"
+
+
+
+        return tipo_pagamento, desconto if 'desconto' in locals() else acréscimo, total_final        
+
+
+total = calcular_valor_final(total_do_pedido)
 
 print("\n=== Pedidos realizados ===")
 for item in Pedido_client:
     print(f"- {item}")
-print(f"Total a pagar: R$ {total_do_pedido:.2f}")
+print(f"Total a pagar: R$ {total:.2f}")
 print("=== FIM ===")
