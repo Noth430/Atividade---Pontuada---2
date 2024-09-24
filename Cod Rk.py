@@ -25,41 +25,45 @@ codigo |Menu              |Valor |
 7      |Hamburguer        |25,00 |  
       """)
 
+def exibir_menu(codigo_prato):
+        match(codigo_prato):
+            case 1:
+                return "Picanha R$ 100,00",100
+            case 2:
+                return "Strognoff R$ 35,00",35
+            case 3:
+                return "Lasanha R$ 35,00",35
+            case 4:
+                return "Frango a Milanesa R$ 70,00",70
+            case 5:
+                return "Peixe Grelhado R$ 60,00",60
+            case 6:
+                return "Burrito com Fritas R$ 85,00",85
+            case 7:
+                return "Hamburguer R$25,00",25
+            case _:
+                return None, 0
 
-Codigo_Prato =(input("Digite o Código do seu Prato: "))
+Pedido_client = []
+total_do_pedido = 0
 
-def exibir_menu(n):
 
-    match(Codigo_Prato):
-        case "1":
-            print("Picanha R$ 100,00")
-        case "2":
-            print("Strognoff R$35,00")
-        case "3":
-            print("Lasanha R$35,00")
-        case "4":
-            print("Frango a Milanesa R$70,00")
-        case "5":
-            print("Peixe Grelhado R$60,00")
-        case "6":
-            print("Burrito com Fritas R$85,00")
-        case "7":
-            print("Hamburguer R$25,00")
-        case "0":
-            print("Opção invalida, Por favor digite um Código Valido.")
-    return Codigo_Prato
-def codigo_invalido(verificacao):
-    while True:
-        if verificacao == 0:
-            print("Codigo invalido, Digite o codigo correto: ")
-        else:
+while True:
+    codigo_prato = int(input("Digite o codigo do produto"))
+    prato, preco = exibir_menu(codigo_prato)
+    if prato is None:
+        print("Codigo invalido,Digite o codigo novamente: ")
+    else:
+        print(f"Prato ecolhido: {prato}")
+        Pedido_client.append(prato)
+        total_do_pedido += preco
+    
+        adicionar = input("Deseja Adificonar mais algum pedido? (sim ou não ?):")
+        if adicionar != 'sim':
             break
-    return verificacao       
 
-
-verificacao = exibir_menu(Codigo_Prato)
-verificacao2 = codigo_invalido(Codigo_Prato)
-
-print(f"Prato escolhido: {verificacao}")
-
-print,("=== FIM ===")
+print("\n=== Pedidos realizados ===")
+for item in Pedido_client:
+    print(f"- {item}")
+print(f"Total a pagar: R$ {total_do_pedido:.2f}")
+print("=== FIM ===")
